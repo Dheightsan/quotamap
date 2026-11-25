@@ -49,7 +49,7 @@ python scripts/quotamap.py calibrate 14
 }
 ```
 
-**OpenCode** plugin: planned. OpenCode does not read Claude Code hooks, and its v2 plugin API is different from what I first wrote against, so there is nothing to install yet. The script is a plain command line tool (`python scripts/quotamap.py report` works from any terminal), and it only measures Claude Code usage.
+**OpenCode** does not read Claude Code hooks, so `opencode/quotamap/` is a plugin for the v2 plugin API that runs the same script and adds its warning to the system context of each request (cached for a minute). Copy the folder to `~/.config/opencode/plugins/` and set `QUOTAMAP_SCRIPT` to the full path of `scripts/quotamap.py`. It has only been tested against a mock of the plugin context, not inside OpenCode itself. It only measures Claude Code usage, not OpenCode's own.
 
 ## Calibration
 
@@ -90,7 +90,7 @@ The first scan of a big history takes around half a minute. After that parsed fi
 
 It only sees transcripts on the machine where it runs. A session that changes topic stays in the area of its first prompt. Model weights are rough, so a reading from a few days ago can drift if your model mix changed.
 
-Run the tests with `python -m unittest discover -s tests`.
+Run the tests with `python -m unittest discover -s tests` and, for the OpenCode plugin, `node --test tests/opencode/*.test.mjs`.
 
 ## License
 
