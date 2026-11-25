@@ -311,7 +311,7 @@ def analyze(rows: list, readings: list, cfg: dict, now: float) -> dict:
                              % (fmt_time(out["runs_out_at"]) if out["runs_out_at"] else "before reset", proj,
                                 max(100 - pct, 0) / left, rate))
     frac = hours / WEEK_H
-    for a, p in sorted(out["pct_by_area"].items(), key=lambda kv: -kv[1]):
+    for a, p in sorted(out["pct_by_area"].items(), key=lambda kv: (-round(kv[1], 6), kv[0])):
         budget = cfg["areas"].get(a, {}).get("budget_pct")
         if budget is not None and p > warn["min_area_pct"] and p > budget * max(frac, 0.15) * warn["area_margin"]:
             out["alerts"].append("area '%s' is at %.1f %% of the week and its budget is %g %%." % (a, p, budget))
@@ -329,7 +329,7 @@ def render(res: dict, cfg: dict, now: float) -> str:
         L.append("Give one: quotamap calibrate <weekly % shown by your plan>, or wire the statusline (README). Best at 3 % or more.")
         tot = res["units"] or 1
         L.append("Share of this week's usage by area (cost units %.0f):" % res["units"])
-        for a, u in sorted(res["units_by_area"].items(), key=lambda kv: -kv[1]):
+        for a, u in sorted(res["units_by_area"].items(), key=lambda kv: (-round(kv[1], 6), kv[0])):
             L.append("  %-26s %5.1f %%" % (a, 100 * u / tot))
         return "\n".join(L)
     age = (now - res["calibrated_at"]) / HOUR
@@ -341,7 +341,7 @@ def render(res: dict, cfg: dict, now: float) -> str:
              "Borderline: the projection is slightly over 100 %." if proj < 100 + margin else
              "The quota does NOT last to the reset at this pace.")
     L.append("By area (% of the weekly quota | budget):")
-    for a, p in sorted(res["pct_by_area"].items(), key=lambda kv: -kv[1]):
+    for a, p in sorted(res["pct_by_area"].items(), key=lambda kv: (-round(kv[1], 6), kv[0])):
         b = cfg["areas"].get(a, {}).get("budget_pct")
         L.append("  %-26s %5.1f %% | %s" % (a, p, ("%g %%" % b) if b is not None else "-"))
     for x in res["alerts"]:
