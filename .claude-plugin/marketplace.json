@@ -1,0 +1,12 @@
+{
+  "name": "quotamap",
+  "description": "Quota budgets per area of work.",
+  "owner": { "name": "Dheightsan" },
+  "plugins": [
+    {
+      "name": "quotamap",
+      "source": "./",
+      "description": "Splits the weekly quota by area and warns when the week will not last."
+    }
+  ]
+}

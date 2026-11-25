@@ -1,0 +1,12 @@
+Week since Sun 10 19:00 UTC (66.0 h in): 38.0 % of the weekly quota (calibrated 0 h ago, 1.7 units per 1 %)
+Pace last 24 h: 0.99 %/h (even pace would be 0.60). Projection at reset (Sun 17 19:00 UTC): 139 %.
+The quota does NOT last to the reset at this pace.
+By area (% of the weekly quota | budget):
+  backend                     17.1 % | 30 %
+  frontend                    11.0 % | 25 %
+  tooling                      5.5 % | 10 %
+  docs                         2.2 % | 10 %
+  research                     2.2 % | 10 %
+Warning: at this pace the weekly quota runs out around Sat 16 03:50 UTC (projection 139 % at reset). To land at 100 %, hold 0.61 %/h instead of 0.99.
+Warning: area 'backend' is at 17.1 % of the week and its budget is 30 %.
+Warning: area 'tooling' is at 5.5 % of the week and its budget is 10 %.

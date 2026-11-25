@@ -1,0 +1,25 @@
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.9", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Config and manifests are valid JSON
+        run: python -c "import json,glob; [json.load(open(f, encoding='utf-8')) for f in glob.glob('config/*.json')+glob.glob('.claude-plugin/*.json')+glob.glob('hooks/*.json')]"
+      - name: CLI smoke test
+        run: python scripts/quotamap.py --help

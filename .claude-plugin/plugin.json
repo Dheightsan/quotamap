@@ -1,0 +1,7 @@
+{
+  "name": "quotamap",
+  "description": "Spend of the weekly quota by area, with a heads up before it is gone.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": { "name": "Dheightsan" }
+}
