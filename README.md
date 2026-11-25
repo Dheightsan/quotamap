@@ -21,7 +21,7 @@ You define areas (`frontend`, `backend`, `docs`...) and a budget for each, as a 
 
 ## Install
 
-Python 3.9 or newer, standard library only.
+Python 3.10 or newer, standard library only.
 
 **Claude Code plugin**
 
